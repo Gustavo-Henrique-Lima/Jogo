@@ -30,20 +30,3 @@
 .menu li {
     margin: 1rem 0;
 }
-
-.rpgui-button {
-    font-size: 1.2rem;
-    padding: 10px 20px;
-    background: linear-gradient(90deg, #ffcc00, #ff8800);
-    border: 2px solid #000;
-    border-radius: 10px;
-    color: #000;
-    text-decoration: none;
-    display: inline-block;
-    transition: transform 0.3s;
-}
-
-.rpgui-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(90deg, #ff8800, #ffcc00);
-}

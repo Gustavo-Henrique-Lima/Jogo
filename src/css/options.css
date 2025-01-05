@@ -32,19 +32,19 @@
     transform: scale(1.5);
 }
 
-.back-button {
-    font-size: 1rem;
-    padding: 8px 16px;
-    background: linear-gradient(90deg, #0077ff, #00ccff);
-    border: 2px solid #000;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;
-    transition: transform 0.3s;
-    z-index: 100;
+label {
+    cursor: url('../assets/cursor/yugicursor.png'), default;
 }
 
-.back-button:hover {
-    transform: scale(1.1);
-    background: linear-gradient(90deg, #00ccff, #0077ff);
+label:hover {
+    cursor: url('../assets/cursor/yamiyugicursorGLOW.png'), auto;
+}
+
+
+input[type="checkbox"] {
+    cursor: url('../assets/cursor/yugicursor.png'), default;
+}
+
+input[type="checkbox"]:hover {
+    cursor: url('../assets/cursor/yamiyugicursorGLOW.png'), auto;
 }

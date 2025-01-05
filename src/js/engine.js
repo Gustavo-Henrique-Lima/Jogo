@@ -51,6 +51,78 @@ const cardData = [
         WinOf: [0],
         LoseOf: [1],
     },
+    {
+        id: 3,
+        name: 'Red Eyes Black Dragon',
+        type: 'Paper',
+        img: `${pathImages}red_eyes_black_dragon.png`,
+        WinOf: [4, 6],
+        LoseOf: [5],
+    },
+    {
+        id: 4,
+        name: 'Summoned Skull',
+        type: 'Rock',
+        img: `${pathImages}summoned_skull.png`,
+        WinOf: [5, 7],
+        LoseOf: [3],
+    },
+    {
+        id: 5,
+        name: 'Celtic Guardian',
+        type: 'Scissors',
+        img: `${pathImages}celtic_guardian.png`,
+        WinOf: [3, 7],
+        LoseOf: [4],
+    },
+    {
+        id: 6,
+        name: 'Dark Magician Girl',
+        type: 'Paper',
+        img: `${pathImages}dark_magician_girl.png`,
+        WinOf: [7, 8],
+        LoseOf: [9],
+    },
+    {
+        id: 7,
+        name: 'Buster Blader',
+        type: 'Rock',
+        img: `${pathImages}buster_blader.png`,
+        WinOf: [9, 3],
+        LoseOf: [6],
+    },
+    {
+        id: 8,
+        name: 'Kuriboh',
+        type: 'Scissors',
+        img: `${pathImages}kuriboh.png`,
+        WinOf: [6, 4],
+        LoseOf: [7],
+    },
+    {
+        id: 9,
+        name: 'Slifer the Sky Dragon',
+        type: 'Paper',
+        img: `${pathImages}slifer_the_sky_dragon.png`,
+        WinOf: [7, 8],
+        LoseOf: [3],
+    },
+    {
+        id: 10,
+        name: 'Obelisk the Tormentor',
+        type: 'Rock',
+        img: `${pathImages}obelisk_the_tormentor.png`,
+        WinOf: [3, 5],
+        LoseOf: [6],
+    },
+    {
+        id: 11,
+        name: 'The Winged Dragon of Ra',
+        type: 'Scissors',
+        img: `${pathImages}winged_dragon_of_ra.png`,
+        WinOf: [10, 6],
+        LoseOf: [9],
+    }
 ]
 
 async function getRandomCardId() {
@@ -154,20 +226,32 @@ async function createCardImage(IdCard, fieldSide) {
 }
 
 async function drawSelectCard(index) {
-    state.cardSprites.avatar.src = cardData[index].img
-    state.cardSprites.name.innerText = cardData[index].name
-    state.cardSprites.type.innerText = "Attribute: " + cardData[index].type
+    const avatar = state.cardSprites.avatar;
+
+    avatar.src = cardData[index].img;
+    avatar.style.width = "171px";
+    avatar.style.height = "228px";
+
+    state.cardSprites.name.innerText = cardData[index].name;
+    state.cardSprites.type.innerText = "Attribute: " + cardData[index].type;
 }
+
 
 async function drawCards(cardNumbers, fieldSide) {
-    for(let i = 0; i < cardNumbers; i++) {
-        const randomIdCard = await getRandomCardId()
-        const cardImage = await createCardImage(randomIdCard, fieldSide)
+    const drawnCards = new Set();
 
-        // console.log(fieldSide);
-        document.getElementById(fieldSide).appendChild(cardImage)
+    for (let i = 0; i < cardNumbers; i++) {
+        let randomIdCard;
+        do {
+            randomIdCard = await getRandomCardId();
+        } while (drawnCards.has(randomIdCard));
+
+        drawnCards.add(randomIdCard);
+        const cardImage = await createCardImage(randomIdCard, fieldSide);
+        document.getElementById(fieldSide).appendChild(cardImage);
     }
 }
+
 
 async function resetDuel() {
     state.cardSprites.avatar.src = ''
@@ -181,9 +265,12 @@ async function resetDuel() {
 
 async function playAudio(status) {
     const audio = new Audio(`./src/assets/audios/${status}.wav`)
-    try {
-        audio.play()
-    } catch {}
+    const soundPreference = localStorage.getItem('soundEnabled');
+    if (soundPreference === 'true') {
+        try {
+            audio.play()
+        } catch {}
+    } 
 }
 
 function init() {
@@ -193,7 +280,12 @@ function init() {
     drawCards(5, state.playerSide.computer)
 
     const bgm = document.getElementById('bgm')
-    bgm.play()
+    const soundPreference = localStorage.getItem('soundEnabled');
+    if (soundPreference === 'true') {
+        bgm.play();
+    } else {
+        bgm.pause();
+    }
 }
 
 init()
