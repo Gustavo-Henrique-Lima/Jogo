@@ -1,4 +1,3 @@
-/* General reset */
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,7 +7,6 @@
   user-select: none;
 }
 
-/* Cursor styles */
 body {
   cursor: url('../assets/cursor/yugicursor.png'), default;
 }
@@ -21,7 +19,6 @@ a:hover {
   cursor: url('../assets/cursor/yamiyugicursorGLOW.png'), auto;
 }
 
-/* General button styles */
 .rpgui-button {
   font-size: 1.2rem;
   padding: 10px 20px;
@@ -39,7 +36,6 @@ a:hover {
   background: linear-gradient(90deg, #ff8800, #ffcc00);
 }
 
-/* Specific for back buttons */
 .back-button {
   font-size: 1rem;
   padding: 8px 16px;
@@ -57,7 +53,6 @@ a:hover {
   background: linear-gradient(90deg, #00ccff, #0077ff);
 }
 
-/* Background video styling */
 .bg-video {
   position: absolute;
   z-index: -2;
@@ -89,7 +84,207 @@ a:hover {
   );
 }
 
-/* Responsive Design */
+.player-interface {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  padding: 0 20px;
+}
+
+.life-bar-container {
+  width: 100%;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid #fff;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.life-bar-fill {
+  width: 100%;
+  transition: height 0.5s ease-in-out, background-color 0.3s ease-in-out;
+  background-color: green;
+}
+
+.life-div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.life-bar-vertical {
+  height: 200px;
+  width: 30px;
+  border: 2px solid #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#player-life{
+  color: green;
+}
+
+#computer-life{
+  color: green;
+}
+
+.life-div p {
+  margin-top: 8px;
+  font-size: 14px;
+  color: white;
+}
+
+.card-container {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.card {
+  position: relative;
+  width: 140px;
+  height: 190px;
+  background-color: #000;
+  border: 4px solid #d4af37;
+  border-radius: 10px;
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  padding: 8px; 
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-display {
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 150px;
+  margin: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card-display:hover {
+  transform: scale(1.1);
+}
+
+.card-text {
+  color: white;
+  font-size: 10px;
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.4;
+}
+
+.card-text p strong {
+  font-size: 12px; 
+  color: #ffd700;
+}
+
+.card-text p {
+  margin: 4px 0;
+}
+
+.card-image {
+  width: 100%;
+  height: 100px; 
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid #d4af37;
+}
+
+.dimmed-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 10;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 3rem;
+  text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.duel-stage {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 20;
+  display: none;
+}
+
+.duel-x {
+  font-size: 5rem;
+  color: red;
+}
+
+.duel-card {
+  width: 150px;
+  height: 200px;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.duel-card-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border: 2px solid #d4af37;
+  border-radius: 8px;
+  background-color: rgba(0, 0, 0, 0.8);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  width: 300px;
+}
+
+.duel-card-image {
+  width: 100px;
+  height: 140px;
+  border-radius: 4px;
+  object-fit: cover;
+  border: 2px solid #d4af37;
+}
+
+.duel-card-text {
+  color: white;
+  font-size: 12px;
+  text-align: left;
+}
+
+.duel-card-text p {
+  margin: 4px 0;
+}
+
 @media (max-width: 768px) {
   body {
     font-size: 0.8rem;
