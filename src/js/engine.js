@@ -209,7 +209,7 @@ function updatePlayerLifeBar() {
 }
 
 function endGame() {
-    window.location.replace("/");
+    window.location.replace("/Jogo/");
 }
 
 
